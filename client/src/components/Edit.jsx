@@ -16,7 +16,7 @@ const Edit = ({setModal,taskNo}) => {
             description: description
         }
 
-        await axios.put(`http://localhost:${PORT}/update/${taskNo}`,putDescription)
+        await axios.put(`https://pernapp-amae.onrender.com/update/${taskNo}`,putDescription)
         .then((response)=>{
             console.log('Updated Task!');
             notify(response);

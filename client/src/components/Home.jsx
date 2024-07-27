@@ -14,7 +14,7 @@ const Home = () => {
         
     //Method to get all the tasks
     const getTasks = async ()=>{
-        await axios.get(`http://localhost:${PORT}/receive`)
+        await axios.get(`https://pernapp-amae.onrender.com/receive`)
         .then((response)=>{
             setTasks(response.data.tasks);
         })
@@ -46,7 +46,7 @@ const Home = () => {
             description: description
         }
 
-        await axios.post(`http://localhost:${PORT}/create`,postDescription)
+        await axios.post(`https://pernapp-amae.onrender.com/create`,postDescription)
         .then((response)=>{
             console.log('Created Task!');
             notify(response);
@@ -74,7 +74,7 @@ const Home = () => {
     //Method to delete a task
     const deleteTask = async (id)=>{
 
-        await axios.delete(`http://localhost:${PORT}/delete/${id}`)
+        await axios.delete(`https://pernapp-amae.onrender.com/delete/${id}`)
         .then((response)=>{
             console.log('Updated Task!');
             notify(response)
