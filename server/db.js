@@ -1,11 +1,13 @@
 import {createRequire} from 'module';
 const require = createRequire(import.meta.url);
 const Pool = require('pg').Pool;
+require('dotenv').config();
 
+const db_url = process.env.DB_URL;
 export const pool = new Pool({
-    user:"postgres",
-    password:"pass123test",
-    host:"localhost",
-    port:5432,
-    database: "perntodo"
+    connectionString: db_url,
+    ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      }
 })

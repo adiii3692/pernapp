@@ -20,7 +20,6 @@ router.post('/create',async(request,response)=>{
 router.get('/receive',async(request,response)=>{
     try {
         const allTasks = await pool.query('SELECT * FROM todo');
-        
         return response.status(200).json({message:"Received all tasks",tasks:allTasks.rows});
     } catch (error) {
         console.log(error.message);
@@ -32,7 +31,7 @@ router.get('/receive',async(request,response)=>{
 router.get('/details/:id',async(request,response)=>{
     try {
         const id = request.params.id;
-        const task = await pool.query('SELECT * FROM todo WHERE todo_id = $1',[id]);
+        const task = await pool.query('SELECT * FROM todo WHERE id = $1',[id]);
 
         return response.status(200).json({message:"Received one task",task:task.rows});
     } catch (error) {
@@ -47,7 +46,7 @@ router.put('/update/:id',async(request,response)=>{
         const id = request.params.id;
         const description = request.body.description;
 
-        const updatedTask = await pool.query('UPDATE todo SET description=$1 WHERE todo_id=$2 RETURNING *',[description,id]);
+        const updatedTask = await pool.query('UPDATE todo SET description=$1 WHERE id=$2 RETURNING *',[description,id]);
         return response.status(200).json({message:"Task Updated!",updatedTask:updatedTask.rows});
         
     } catch (error) {
@@ -60,7 +59,7 @@ router.put('/update/:id',async(request,response)=>{
 router.delete('/delete/:id',async(request,response)=>{
     try {
         const id = request.params.id;
-        const deletedTask = await pool.query('DELETE FROM todo WHERE todo_id=$1 RETURNING *',[id]);
+        const deletedTask = await pool.query('DELETE FROM todo WHERE id=$1 RETURNING *',[id]);
 
         return response.status(200).json({message:'Task Deleted!',deletedTask:deletedTask.rows});
     } catch (error) {

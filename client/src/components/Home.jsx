@@ -135,9 +135,9 @@ const Home = () => {
                 <div className='col-span-2' key={index}>{task.description}</div>
                 <div key={index+1}><button className='bg-yellow-400' key={index+1} onClick={()=>{
                     setModal(true);
-                    setTaskNo(task.todo_id);
+                    setTaskNo(task.id);
                 }}>Edit</button></div>
-                <div key={index+2}><button className='bg-red-400 text-white' key={index+2} onClick={()=>{deleteTask(task.todo_id)}}>Delete</button></div>
+                <div key={index+2}><button className='bg-red-400 text-white' key={index+2} onClick={()=>{deleteTask(task.id)}}>Delete</button></div>
             </>
         ))}
       </div>
